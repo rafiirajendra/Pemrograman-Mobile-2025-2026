@@ -102,7 +102,7 @@ void main() {
 ```
 Hasil Kode di atas
 
-![Hasil kode di atas](img\soalno4-nullsafety.png)
+![Hasil kode di atas](img/soalno4-nullsafety.png)
 
 Variabel late
 
@@ -137,4 +137,4 @@ void main() {
 ```
 Hasil Kode di atas
 
-![Hasil kode di atas](img\soalno4-late.png)
+![Hasil kode di atas](img/soalno4-late.png)
