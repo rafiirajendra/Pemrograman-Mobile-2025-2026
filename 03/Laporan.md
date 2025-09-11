@@ -1,3 +1,8 @@
+# Praktikum Pemrograman Mobile
+**Nama**  : Muhammad Rafi Rajendra  
+**NIM**   : 2341720158  
+**Kelas** : TI-3h  
+
 ## Praktikum 1
 
 Langkah 1:
@@ -141,3 +146,5 @@ void main() {
 Output kode program pada tugas praktikum
 
 ![alt text](img/image-9.png)
+
+![alt text](img/image-10.png)
