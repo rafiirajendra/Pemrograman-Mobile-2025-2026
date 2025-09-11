@@ -1,7 +1,7 @@
 # Praktikum Pemrograman Mobile
 **Nama**  : Muhammad Rafi Rajendra  
 **NIM**   : 2341720158  
-**Kelas** : TI-3h  
+**Kelas** : TI-3H  
 
 ## Praktikum 1
 
