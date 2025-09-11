@@ -114,6 +114,7 @@ Buatlah sebuah program yang dapat menampilkan bilangan prima dari angka 0 sampai
 ```dart
 void main() {
   String nim = "2341720158";
+  String nama = "Muhammad Rafi Rajendra";
 
   for (int n = 0; n <= 203; n++) {
     bool prima = true;
@@ -130,11 +131,12 @@ void main() {
     }
 
     if (prima) {
-      print("$n adalah bilangan prima → $nim");
+      print("$n $nama ($nim)");
+    } else {
+      print("$n");
     }
   }
 }
-
 ```
 Output kode program pada tugas praktikum
 
