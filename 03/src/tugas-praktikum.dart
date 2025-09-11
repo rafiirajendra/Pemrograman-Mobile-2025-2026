@@ -1,5 +1,6 @@
 void main() {
   String nim = "2341720158";
+  String nama = "Muhammad Rafi Rajendra";
 
   for (int n = 0; n <= 203; n++) {
     bool prima = true;
@@ -16,7 +17,7 @@ void main() {
     }
 
     if (prima) {
-      print("$n adalah bilangan prima → $nim");
+      print("$n adalah bilangan prima → $nama ($nim)");
     }
   }
 }

@@ -138,4 +138,4 @@ void main() {
 ```
 Output kode program pada tugas praktikum
 
-![alt text](img/image-9.png)![alt text](img/image-10.png)
+![alt text](img/image-9.png)
