@@ -17,7 +17,9 @@ void main() {
     }
 
     if (prima) {
-      print("$n adalah bilangan prima → $nama ($nim)");
+      print("$n $nama ($nim)");
+    } else {
+      print("$n");
     }
   }
 }
