@@ -21,7 +21,9 @@ Langkah 4:
 ![alt text](img/image04.png)
 
 # Praktikum 2: Menghubungkan Perangkat Android atau Emulator
-Saya menggunakan emulator jadi tidak menghubungkan ke perangkat device
+Saya menghubungkan ke handphone menggunakan wireless jadi menggunakan jaringan WiFi yang sama dan hasilnya seperti ini
+
+![alt text](<img/iamage08.jpg>)
 
 # Praktikum 3: Membuat Repository GitHub dan Laporan Praktikum
 Membuat repository bary
