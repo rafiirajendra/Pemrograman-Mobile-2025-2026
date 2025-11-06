@@ -108,3 +108,26 @@ Output Untuk Soal 2:
 ![Output Soal 3 Praktikum 1](GIF/gif01.gif)
 
 ## Praktikum 2: Menggunakan await/async untuk menghindari callbacks
+
+### Soal 4:
+
+- Jelaskan maksud kode langkah 1 dan 2 tersebut!
+
+  - Langkah 1 — Tiga fungsi async “dummy” yang mengembalikan angka
+    - Sama untuk returnTwoAsync() dan returnThreeAsync() (masing-masing delay 3 detik lalu mengembalikan 2 dan 3).
+    - Intinya: mensimulasikan pekerjaan asinkron (mis. call API, I/O) selama 3 detik, lalu mengembalikan nilai int.
+
+  - Langkah 2 — Menjumlahkan hasilnya secara sekuensial lalu tampilkan ke UI
+    - await membuat tiap pemanggilan menunggu selesai sebelum lanjut ke berikutnya, jadi total waktu ≈ 3 + 3 + 3 = 9 detik.
+    - setState mengubah state widget agar UI menampilkan hasil penjumlahan ("6").
+
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 4".
+
+Hasil Praktikum 2:
+
+![Hasil Praktikum 2](GIF/gif02.gif)
+
+## Praktikum 3: Menggunakan Completer di Future
+
+### Soal 5:
+- J
