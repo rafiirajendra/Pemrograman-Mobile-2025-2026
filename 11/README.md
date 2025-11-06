@@ -180,3 +180,34 @@ Hasil Praktikum 4:
 
   - FutureGroup: perilaku mirip—kalau ada future error dan tidak kamu tangani per item, future gabungan akan error juga. Keuntungannya, kamu punya kontrol untuk menambah/menangani future sebelum close().
 
+## Praktikum 5: Menangani Respon Error pada Async Code
+
+### Soal 9:
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 9".
+
+Hasil Praktikum 5 Soal 9:
+
+![Hasil Praktikum 5 Soal 9](GIF/gif05.gif)
+
+![Hasil Praktikum 5 Soal 9](img/image02.png)
+
+### Soal 10:
+- Panggil method handleError() tersebut di ElevatedButton, lalu run. Apa hasilnya? Jelaskan perbedaan kode langkah 1 dan 4!
+
+Untuk hasil tetap sama namun ada perbedaan pada tampilan Debug Console seperti pada gambar berikut:
+
+![Hasil Praktikum 5 Soal 10](img/image03.png)
+
+- Perbedaan kode langkah 1 dan 4!
+  - Langkah 1 — returnError()
+    - Mensimulasikan kerja async 2 detik lalu melempar exception.
+    - Hasil akhirnya: Future gagal (error). Si pemanggil harus menangani dengan try/catch atau .catchError(...).
+    - Jika tidak ditangani, error akan propagate ke atas (unhandled).
+  - Langkah 4 — handleError()
+    - Memanggil returnError() lalu menangkap error di catch.
+    - karena error ditangkap, handleError() tidak gagal (Future-nya complete sukses/normal).
+    → Pemanggil handleError() tidak menerima error lagi.
+    - finally selalu dieksekusi (untuk cleanup/log).
+    - Ada efek samping ke UI melalui setState.
+
+## 
