@@ -130,4 +130,13 @@ Hasil Praktikum 2:
 ## Praktikum 3: Menggunakan Completer di Future
 
 ### Soal 5:
-- J
+- Jelaskan maksud kode langkah 2 tersebut!
+  - Completer dipakai untuk mengendalikan penyelesaian sebuah Future secara manual (kapan dan dengan nilai apa).
+  - getNumber() memberi kamu Future<int>; calculate() memutuskan kapan future itu selesai (setelah delay 5 dtk) dan dengan nilai apa (42).
+
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 5".
+
+Hasil Praktikum 3 pada Soal 5:
+
+![Hasil Praktikum 3 Soal 5](GIF/gif03.gif)
+
