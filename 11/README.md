@@ -157,3 +157,9 @@ Hasil Praktikum 3 Soal 6:
 
 ## Praktikum 4: Memanggil Future secara paralel
 
+### Soal 7:
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 7".
+
+Hasil Praktikum 4:
+
+![Hasil Praktikum 4](GIF/gif04.gif)
