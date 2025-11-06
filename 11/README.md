@@ -163,3 +163,20 @@ Hasil Praktikum 3 Soal 6:
 Hasil Praktikum 4:
 
 ![Hasil Praktikum 4](GIF/gif04.gif)
+
+### Soal 8:
+- Jelaskan maksud perbedaan kode langkah 1 dan 4!
+
+  - FutureGroup: bisa add beberapa kali, lalu close() untuk “ngunci” supaya future-nya bisa resolve.
+  - Future.wait: harus punya list lengkap saat pemanggilan.
+
+  - FutureGroup wajib close(); tanpa ini, futureGroup.future tidak akan pernah selesai.
+  - Future.wait tidak perlu close().
+
+  - Future.wait menjamin urutan hasil sesuai urutan di list input, meski selesainya acak.
+  - FutureGroup umumnya juga sesuai urutan penambahan (add order). (Tetap best-practice: jangan asumsi “finish order”.)
+
+  - Future.wait: jika ada satu future error, future gabungan akan complete dengan error (tidak ada List hasil). Kalau butuh “tahan error per item”, tangani di masing-masing future: returnTwoAsync().catchError((_) => 0).
+
+  - FutureGroup: perilaku mirip—kalau ada future error dan tidak kamu tangani per item, future gabungan akan error juga. Keuntungannya, kamu punya kontrol untuk menambah/menangani future sebelum close().
+

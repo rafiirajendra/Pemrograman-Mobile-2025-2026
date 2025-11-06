@@ -144,5 +144,11 @@ class _FuturePageState extends State<FuturePage> {
         result = Total.toString();
       });
     });
+
+    final futures = Future.wait<int>([
+      returnOneAsync(),
+      returnTwoAsync(),
+      returnThreeAsync()
+    ]);
   }
 }
