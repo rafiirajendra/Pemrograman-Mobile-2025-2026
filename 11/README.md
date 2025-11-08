@@ -210,4 +210,72 @@ Untuk hasil tetap sama namun ada perbedaan pada tampilan Debug Console seperti p
     - finally selalu dieksekusi (untuk cleanup/log).
     - Ada efek samping ke UI melalui setState.
 
-## 
+## Praktikum 6: Menggunakan Future dengan StatefulWidget
+
+### Soal 11:
+- Tambahkan nama panggilan Anda pada tiap properti title sebagai identitas pekerjaan Anda.
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+
+class LocationScreen extends StatefulWidget {
+  const LocationScreen({super.key});
+
+  @override
+  State<LocationScreen> createState() => _LocationScreenState();
+}
+
+class _LocationScreenState extends State<LocationScreen> {
+  String myPosition = '';
+
+  @override
+  void initState() {
+    super.initState();
+    getPosition().then((Position myPos) {
+      myPosition =
+          'Latitude: ${myPos.latitude.toString()} - Longitude: ${myPos.longitude.toString()}';
+      setState(() {
+        myPosition = myPosition;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Rafi Rajendra')),
+      body: Center(child: Text(myPosition)),
+    );
+  }
+
+  Future<Position> getPosition() async {
+    await Geolocator.requestPermission();
+    await Geolocator.isLocationServiceEnabled();
+    Position position = await Geolocator.getCurrentPosition();
+    return position;
+  }
+}
+```
+
+Hasil Praktikum 6 Soal 11:
+
+![Hasil Praktikum 6 Soal 11](img/image04.png)
+
+### Soal 12:
+- Jika Anda tidak melihat animasi loading tampil, kemungkinan itu berjalan sangat cepat. Tambahkan delay pada method getPosition() dengan kode await Future.delayed(const Duration(seconds: 3));
+
+  - Saya masih melihat animasi loading berikut hasilnya
+  
+  ![alt text](GIF/gif06.gif)
+
+
+- Apakah Anda mendapatkan koordinat GPS ketika run di browser Mengapa demikian?
+
+![alt text](img/image05.png)
+
+Tidak mendapatkan koordinat GPS meskipun sudah di allow untuk mengakses lokasi. Hal ini terjadi karena aplikasi web berjalan pada origin yang tidak aman (bukan HTTPS) atau bukan localhost — browser hanya mengizinkan Geolocation API pada origin yang aman. Selain itu, jika dijalankan di emulator/virtual device tanpa mensimulasikan lokasi, atau jika layanan lokasi pada mesin/VM dimatikan, maka koordinat tidak akan diperoleh meski permission sudah di-allow.
+
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 12".
+
+![alt text](GIF/gif06.gif)
