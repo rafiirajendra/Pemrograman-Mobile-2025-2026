@@ -413,4 +413,9 @@ class NavigationSecond extends StatelessWidget {
 
 ## Praktikum 9: Memanfaatkan async/await dengan Widget Dialog
 
-##
+### Soal 17:
+- Cobalah klik setiap button, apa yang terjadi ? Mengapa demikian ?
+  - Ketika klik button Change Color maka akan muncul pertanyaan dan ketika memilih jawabannya maka warna akan berubah sesuai dengan jawaban yang dipilih. Karena pada langkah 3: Tambah method async
+- Gantilah 3 warna pada langkah 3 dengan warna favorit Anda!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 17".
+  - Hasil ![alt text](GIF/gif10.gif)
