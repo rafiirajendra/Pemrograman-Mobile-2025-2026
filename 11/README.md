@@ -279,3 +279,15 @@ Tidak mendapatkan koordinat GPS meskipun sudah di allow untuk mengakses lokasi. 
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 12".
 
 ![alt text](GIF/gif06.gif)
+
+## Praktikum 7: Manajemen Future dengan FutureBuilder
+
+### Soal 13:
+- Apakah ada perbedaan UI dengan praktikum sebelumnya? Mengapa demikian?
+
+  - Ada perbedaan yaitu terdapat loading yang lebih lama dari sebelumnya.
+
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 13".
+
+  - Hasil ![alt text](GIF/gif07.gif)
+- Seperti yang Anda lihat, menggunakan FutureBuilder lebih efisien, clean, dan reactive dengan Future bersama UI.
