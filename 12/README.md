@@ -93,3 +93,88 @@ class ColorStream {
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
     - ![Soal 6](GIF/gif02.gif)
 - Lalu lakukan commit dengan pesan "W12: Jawaban Soal 6".
+
+## Soal 7
+- Jelaskan maksud kode langkah 13 sampai 15 tersebut!
+    ```dart
+    addError(){
+    controller.sink.addError('error cuy');
+    }
+
+    stream.listen((event){
+    setState((){
+        lastNumber = event;
+    });
+    }).onError((error){
+    setState((){
+        lastNumber = -1;
+    });
+    });
+
+    void addRandomNumber() {
+    Random random = Random();
+    // int myNum = random.nextInt(10);
+    // numberStream.addNumberToSink(myNum);
+    numberStream.addError();
+    }
+    ```
+
+    ---
+
+    ### 🧠 Penjelasan Per Baris
+
+    #### 1. **Fungsi `addError()`**
+    ```dart
+    addError(){
+    controller.sink.addError('error cuy');
+    }
+    ```
+    - Fungsi ini menambahkan **error ke stream** menggunakan `addError`.
+    - `'error cuy'` adalah pesan error yang dikirim.
+    - `controller.sink` adalah jalur masuk ke stream, dan `addError()` akan memicu **handler error** pada listener stream.
+
+    ---
+
+    #### 2. **Listener Stream dengan Penanganan Error**
+    ```dart
+    stream.listen((event){
+    setState((){
+        lastNumber = event;
+    });
+    }).onError((error){
+    setState((){
+        lastNumber = -1;
+    });
+    });
+    ```
+    - `stream.listen(...)` akan menangkap setiap data (`event`) yang dikirim ke stream.
+    - `setState()` digunakan untuk memperbarui nilai `lastNumber` dengan data terbaru.
+    - Jika terjadi **error**, blok `onError(...)` akan dijalankan dan `lastNumber` diset ke `-1` sebagai penanda bahwa terjadi kesalahan.
+
+    ---
+
+    #### 3. **Fungsi `addRandomNumber()`**
+    ```dart
+    void addRandomNumber() {
+    Random random = Random();
+    // int myNum = random.nextInt(10);
+    // numberStream.addNumberToSink(myNum);
+    numberStream.addError();
+    }
+    ```
+    - Fungsi ini awalnya dimaksudkan untuk menambahkan angka acak ke stream.
+    - Namun, dua baris yang menghasilkan angka acak dan mengirimkannya ke stream **dikomentari**.
+    - Sebagai gantinya, fungsi ini memanggil `numberStream.addError()`, yang kemungkinan besar adalah metode yang memanggil `addError()` seperti di atas.
+
+    ---
+
+    ### 🎯 Tujuan Kode
+
+    - **Simulasi error dalam stream**: Dengan memanggil `addError()`, kamu bisa menguji bagaimana aplikasi menangani error dari stream.
+    - **Respons UI terhadap error**: Saat error terjadi, UI akan menampilkan `-1` sebagai indikator bahwa ada masalah.
+    - **Latihan pemahaman stream dan error handling**: Ini sangat berguna untuk memahami bagaimana stream bekerja dalam Flutter, terutama dalam konteks real-time data dan error management.
+
+    ---
+
+- Kembalikan kode seperti semula pada Langkah 15, comment addError() agar Anda dapat melanjutkan ke praktikum 3 berikutnya.
+- Lalu lakukan commit dengan pesan "W12: Jawaban Soal 7".
