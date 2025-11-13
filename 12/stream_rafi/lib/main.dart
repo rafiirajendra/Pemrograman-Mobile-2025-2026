@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'stream.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,8 +29,41 @@ class StreamHomePage extends StatefulWidget {
 }
 
 class _StreamHomePageState extends State<StreamHomePage> {
+  Color bgColor = Colors.white;
+  late ColorStream colorStream;
+  StreamSubscription<Color>? _subscription;
+
+  @override
+  void initState() {
+    super.initState();
+    colorStream = ColorStream();
+    // subscribe to the color stream and update state on each event
+    _subscription = colorStream.getColors().listen((eventColor) {
+      setState(() {
+        bgColor = eventColor;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _subscription?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: bgColor,
+      appBar: AppBar(
+        title: const Text('Rafi Rajendra'),
+      ),
+      body: const Center(
+        child: Text(
+          'Color stream demo',
+          style: TextStyle(fontSize: 20, color: Colors.black87),
+        ),
+      ),
+    );
   }
 }

@@ -69,3 +69,8 @@ class ColorStream {
 - Apa maksud isi perintah kode tersebut?
     - Fungsi getColors() akan menghasilkan warna baru dari daftar setiap detik, dan akan terus berulang tanpa henti
 - Lakukan commit hasil jawaban Soal 3 dengan pesan "W12: Jawaban Soal 3"
+
+## Soal 4
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+    - ![Soal 4](GIF/gif01.gif)
+- Lakukan commit hasil jawaban Soal 4 dengan pesan "W12: Jawaban Soal 4"
