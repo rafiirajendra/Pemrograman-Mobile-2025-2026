@@ -80,3 +80,16 @@ class ColorStream {
     - listen: Digunakan jika butuh fleksibilitas lebih tinggi dan kontrol terhadap stream
     - await for: - Digunakan jika ingin alur yang sederhana dan berurutan.
 - Lakukan commit hasil jawaban Soal 5 dengan pesan "W12: Jawaban Soal 5"
+
+## Soal 6
+- Jelaskan maksud kode langkah 8 dan 10 tersebut!
+    - Kode langkah 8
+        - Menginisialisasi stream angka
+        - Mendengarkan data baru dari stream
+        - Memperbarui tampilan UI setiap kali angka baru diterima
+    - Kode langkah 10
+        - Menggabungkan logika acak dengan stream
+        - Memungkinkan UI bereaksi terhadap data baru secara asinkron dan real-time
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+    - ![Soal 6](GIF/gif02.gif)
+- Lalu lakukan commit dengan pesan "W12: Jawaban Soal 6".

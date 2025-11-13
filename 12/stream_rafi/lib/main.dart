@@ -1,6 +1,7 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'stream.dart';
+import 'dart:async';
+import 'dart:math';
 
 void main() {
   runApp(const MyApp());
@@ -30,25 +31,36 @@ class StreamHomePage extends StatefulWidget {
 
 class _StreamHomePageState extends State<StreamHomePage> {
   Color bgColor = Colors.white;
-  late ColorStream colorStream;
-  StreamSubscription<Color>? _subscription;
+  int lastNumber = 0;
+  late StreamController<int> numberStreamController;
+  late NumberStream numberStream;
 
+  @override
   @override
   void initState() {
     super.initState();
-    colorStream = ColorStream();
-    // subscribe to the color stream and update state on each event
-    _subscription = colorStream.getColors().listen((eventColor) {
-      setState(() {
-        bgColor = eventColor;
+    numberStream = NumberStream();
+    numberStreamController = numberStream.controller;
+    Stream<int> stream = numberStreamController.stream;
+    stream.listen((event){
+      setState((){
+        lastNumber = event;
       });
     });
   }
 
   @override
   void dispose() {
-    _subscription?.cancel();
+    // _subscription?.cancel();
+    // super.dispose();
+    numberStreamController.close();
     super.dispose();
+  }
+
+  void addRandomNumber() {
+    Random random = Random();
+    int myNum = random.nextInt(10);
+    numberStream.addNumberToSink(myNum);
   }
 
   @override
@@ -58,11 +70,19 @@ class _StreamHomePageState extends State<StreamHomePage> {
       appBar: AppBar(
         title: const Text('Rafi Rajendra'),
       ),
-      body: const Center(
-        child: Text(
-          'Color stream demo',
-          style: TextStyle(fontSize: 20, color: Colors.black87),
-        ),
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(lastNumber.toString()),
+            ElevatedButton(
+              onPressed: () => addRandomNumber(),
+              child: Text('New Random Number'),
+            )
+          ],
+        )
       ),
     );
   }
