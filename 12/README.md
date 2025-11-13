@@ -74,3 +74,9 @@ class ColorStream {
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
     - ![Soal 4](GIF/gif01.gif)
 - Lakukan commit hasil jawaban Soal 4 dengan pesan "W12: Jawaban Soal 4"
+
+## Soal 5
+- Jelaskan perbedaan menggunakan listen dan await for (langkah 9) !
+    - listen: Digunakan jika butuh fleksibilitas lebih tinggi dan kontrol terhadap stream
+    - await for: - Digunakan jika ingin alur yang sederhana dan berurutan.
+- Lakukan commit hasil jawaban Soal 5 dengan pesan "W12: Jawaban Soal 5"
