@@ -197,6 +197,41 @@ class ColorStream {
 ## Praktikum 4: Subscribe ke stream events
 
 ### Soal 9
-Jelaskan maksud kode langkah 2, 6 dan 8 tersebut!
-Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
-Lalu lakukan commit dengan pesan "W12: Jawaban Soal 9".
+- Jelaskan maksud kode langkah 2, 6 dan 8 tersebut!
+  ### langkah 2
+  - numberStream = NumberStream();
+    - Membuat objek NumberStream yang di dalamnya ada StreamController<int> untuk mengelola aliran angka.
+  - numberStreamController = numberStream.controller;
+    - Menyimpan controller dari NumberStream ke variabel di state, supaya bisa dipakai nanti (misal cek isClosed, dsb).
+  - Stream stream = numberStreamController.stream;
+    - Mengambil stream dari controller. Inilah “aliran data” yang akan kita dengarkan.
+  - subscription = stream.listen((event) { ... });
+    - Mulai berlangganan ke stream.
+    - Setiap ada data baru (event) yang dikirim ke stream:
+      ```dart
+      setState(() {
+        lastNumber = event;
+      });
+      ```
+  - super.initState();
+    - Memanggil initState() dari State parent (wajib) setelah inisialisasi sendiri selesai.
+  
+  ### langkah 6
+  - memutus koneksi listener dari stream, jadi widget tidak menerima update lagi dari stream.
+
+  ### langkah 8
+  - Random random = Random();
+    - Membuat generator angka acak.
+  - int myNum = random.nextInt(10);
+    - Mengambil angka acak dari 0 sampai 9.
+  - if (!numberStreamController.isClosed) { ... }
+    - Mengecek apakah stream masih terbuka.
+  - Kalau belum ditutup angka acak dikirim ke sink NumberStream. Hasilnya akan mengalir ke stream → ditangkap subscription → lastNumber di-update.
+  - else { ... }
+    - UI diubah sehingga lastNumber jadi -1 sebagai tanda bahwa stream sudah tidak aktif / tidak bisa mengirim angka lagi.
+
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+  - Hasil praktikum
+
+  ![Soal 9](GIF/gif04.gif)
+- Lalu lakukan commit dengan pesan "W12: Jawaban Soal 9".
