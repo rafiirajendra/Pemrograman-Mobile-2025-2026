@@ -271,3 +271,33 @@ class ColorStream {
 
   ![Soal 12](GIF/gif06.gif)
 - Lalu lakukan commit dengan pesan "W12: Jawaban Soal 12".
+
+# Project bloc_random_rafi
+
+### Soal 13
+- Jelaskan maksud praktikum ini ! Dimanakah letak konsep pola BLoC-nya ?
+  ### Penjelasan mengenai praktikum ini
+  - RandomNumberBloc = tempat Business Logic (bikin angka random, ngatur stream).
+  - RandomScreen = tempat UI (tampilan & interaksi user).
+  - Komunikasinya lewat Stream/Sink:
+    - UI kirim event ke BLoC → lewat generateRandom.add(null)
+    - BLoC kirim state (angka random) ke UI → lewat stream randomNumber
+    - UI rebuild pakai StreamBuilder.
+  - Itu inti konsep BLoC (Business Logic Component).
+  ### Jadi, di mana letak konsep pola BLoC-nya?
+  - Class RandomNumberBloc → inilah BLoC:
+    - memisahkan business logic (generate angka, ngelola stream) dari UI.
+    - punya input sink (generateRandom) dan output stream (randomNumber).
+  - RandomScreen Hanya:
+    - kirim event: _bloc.generateRandom.add(null) 
+    - dengarkan state: StreamBuilder(stream: _bloc.randomNumber, ...)
+  - Jadi tidak ikut mikirin cara generate angka.
+  - Unidirectional flow (satu arah):
+    - Event: UI ➜ BLoC (Sink)
+    - State: BLoC ➜ UI (Stream)
+    - UI rebuild berdasarkan state, bukan ngacak data sendiri.
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+  - Hasil Praktikum
+
+  ![Soal 13](GIF/gif07.gif)
+- Lalu lakukan commit dengan pesan "W12: Jawaban Soal 13".
