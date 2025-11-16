@@ -4,6 +4,7 @@
 **NIM**   : 2341720158  
 **Kelas** : TI-3H
 
+# Project stream_rafi
 ## Praktikum 1: Dart Streams
 
 ### Soal 1
@@ -235,3 +236,38 @@ class ColorStream {
 
   ![Soal 9](GIF/gif04.gif)
 - Lalu lakukan commit dengan pesan "W12: Jawaban Soal 9".
+
+## Praktikum 5: Multiple stream subscriptions
+
+### Soal 10
+- Jelaskan mengapa error itu bisa terjadi ?
+
+  ![Soal 10](img/image.png)
+
+  - Error itu terjadi karena memanggil listen() dua kali di stream yang bukan broadcast. Pesan “Bad state: Stream has already been listened to” muncul karena Stream default = single-subscription dan membuat dua subscription (subscription dan subscription2) ke stream yang sama.
+
+### Soal 11
+- Jelaskan mengapa hal itu bisa terjadi ?
+  - Angka bertambah dua kali karena stream-nya broadcast dan mempunyai dua listener yang melakukan operasi yang sama (values += '$event - ';) pada setiap event.
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+  - Hasil Praktikum lihat sampai HABIS
+
+  ![Soal 11](GIF/gif05.gif)
+- Lalu lakukan commit dengan pesan "W12: Jawaban Soal 10,11".
+
+# Project streambuilder_rafi
+
+### Soal 12
+- Jelaskan maksud kode pada langkah 3 dan 7 !
+  ### langkah 3
+  - Stream<int> → tipe datanya adalah stream yang berisi int (aliran angka).
+  - numberStream → variabel yang akan menyimpan stream tadi, supaya bisa dipakai di seluruh State (termasuk di initState() dan build()).
+  - late → artinya: variabel tidak langsung diisi saat deklarasi, tapi dijamin akan diisi sebelum dipakai (di sini diisi di initState() dengan NumberStream().getNumbers()).
+  - Jadi langkah 3 itu untuk menyiapkan tempat / variabel untuk menampung stream angka (numberStream) yang nanti akan dihubungkan ke UI lewat StreamBuilder.
+  ### langkah 7
+  - Menggunakan StreamBuilder untuk mendengar numberStream dan otomatis meng-update tampilan teks setiap kali stream mengirim angka baru (tiap 1 detik dari NumberStream().getNumbers()).
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+  - Hasil praktikum
+
+  ![Soal 12](GIF/gif06.gif)
+- Lalu lakukan commit dengan pesan "W12: Jawaban Soal 12".
