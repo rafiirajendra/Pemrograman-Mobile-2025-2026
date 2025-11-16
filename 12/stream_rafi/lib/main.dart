@@ -34,38 +34,54 @@ class _StreamHomePageState extends State<StreamHomePage> {
   int lastNumber = 0;
   late StreamController<int> numberStreamController;
   late NumberStream numberStream;
+  late StreamTransformer<int, int> transformer;
+  late StreamSubscription subscription;
 
-  @override
   @override
   void initState() {
     super.initState();
     numberStream = NumberStream();
     numberStreamController = numberStream.controller;
-    Stream<int> stream = numberStreamController.stream;
-    stream.listen((event){
-      setState((){
+    Stream stream = numberStreamController.stream;
+    subscription = stream.listen((event){
+      setState(() {
         lastNumber = event;
       });
-    }).onError((error){
-      setState((){
+    });
+    subscription.onError((error){
+      setState(() {
         lastNumber = -1;
       });
     });
+    subscription.onDone(() {
+      print('stream done');
+    });
+  }
+
+  void stopStream() {
+    numberStreamController.close();
   }
 
   @override
   void dispose() {
     // _subscription?.cancel();
     // super.dispose();
-    numberStreamController.close();
+    // numberStreamController.close();
+    subscription.cancel();
     super.dispose();
   }
 
   void addRandomNumber() {
     Random random = Random();
     int myNum = random.nextInt(10);
-    numberStream.addNumberToSink(myNum);
-    // numberStream.addError();
+
+    if (!numberStreamController.isClosed) {
+      numberStream.addNumberToSink(myNum);
+    } else {
+      setState(() {
+        lastNumber = -1;
+      });
+    }
   }
 
   @override
@@ -84,10 +100,14 @@ class _StreamHomePageState extends State<StreamHomePage> {
             Text(lastNumber.toString()),
             ElevatedButton(
               onPressed: () => addRandomNumber(),
-              child: Text('New Random Number'),
-            )
+              child: const Text('New Random Number'),
+            ),
+            ElevatedButton(
+              onPressed: () => stopStream(),
+              child: const Text('Stop Subscription'),
+            ),
           ],
-        )
+        ),
       ),
     );
   }

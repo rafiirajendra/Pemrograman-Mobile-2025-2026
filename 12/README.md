@@ -47,7 +47,7 @@ class _StreamHomePageState extends State<StreamHomePage> {
 }
 ```
 
-## Soal 2
+### Soal 2
 - Tambahkan 5 warna lainnya sesuai keinginan Anda pada variabel colors tersebut.
 - Lakukan commit hasil jawaban Soal 2 dengan pesan "W12: Jawaban Soal 2"
 ```dart
@@ -63,25 +63,27 @@ class ColorStream {
 }
 ```
 
-## Soal 3
+### Soal 3
 - Jelaskan fungsi keyword yield* pada kode tersebut!
     - Fungsi Keyword yield* digunakan dalam fungsi generator (async*) untuk mendelegasikan aliran nilai dari stream lain ke stream utama
 - Apa maksud isi perintah kode tersebut?
     - Fungsi getColors() akan menghasilkan warna baru dari daftar setiap detik, dan akan terus berulang tanpa henti
 - Lakukan commit hasil jawaban Soal 3 dengan pesan "W12: Jawaban Soal 3"
 
-## Soal 4
+### Soal 4
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
     - ![Soal 4](GIF/gif01.gif)
 - Lakukan commit hasil jawaban Soal 4 dengan pesan "W12: Jawaban Soal 4"
 
-## Soal 5
+### Soal 5
 - Jelaskan perbedaan menggunakan listen dan await for (langkah 9) !
     - listen: Digunakan jika butuh fleksibilitas lebih tinggi dan kontrol terhadap stream
     - await for: - Digunakan jika ingin alur yang sederhana dan berurutan.
 - Lakukan commit hasil jawaban Soal 5 dengan pesan "W12: Jawaban Soal 5"
 
-## Soal 6
+## Praktikum 2: Stream controllers dan sinks
+
+### Soal 6
 - Jelaskan maksud kode langkah 8 dan 10 tersebut!
     - Kode langkah 8
         - Menginisialisasi stream angka
@@ -94,7 +96,7 @@ class ColorStream {
     - ![Soal 6](GIF/gif02.gif)
 - Lalu lakukan commit dengan pesan "W12: Jawaban Soal 6".
 
-## Soal 7
+### Soal 7
 - Jelaskan maksud kode langkah 13 sampai 15 tersebut!
     ```dart
     addError(){
@@ -121,7 +123,7 @@ class ColorStream {
 
     ---
 
-    ### 🧠 Penjelasan Per Baris
+    ### Penjelasan Per Baris
 
     #### 1. **Fungsi `addError()`**
     ```dart
@@ -176,5 +178,25 @@ class ColorStream {
 
     ---
 
-- Kembalikan kode seperti semula pada Langkah 15, comment addError() agar Anda dapat melanjutkan ke praktikum 3 berikutnya.
-- Lalu lakukan commit dengan pesan "W12: Jawaban Soal 7".
+## Praktikum 3: Injeksi data ke streams
+
+### Soal 8
+- Jelaskan maksud kode langkah 1-3 tersebut!
+  - Langkah 1: Siapkan variabel transformer untuk mengolah stream int.
+  - Langkah 2: Definisikan bagaimana data & error di stream diolah:
+    - data → dikali 10
+    - error → diganti -1
+    - done → stream ditutup.
+  - Langkah 3: Mendengarkan stream yang sudah diproses oleh transformer, lalu menampilkan angka terakhir (lastNumber) di layar.
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+  - Hasil Praktikum
+
+  ![Soal 8](GIF/gif03.gif)
+- Lalu lakukan commit dengan pesan "W12: Jawaban Soal 8".
+
+## Praktikum 4: Subscribe ke stream events
+
+### Soal 9
+Jelaskan maksud kode langkah 2, 6 dan 8 tersebut!
+Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+Lalu lakukan commit dengan pesan "W12: Jawaban Soal 9".
