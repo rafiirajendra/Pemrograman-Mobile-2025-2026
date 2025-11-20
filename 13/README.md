@@ -27,3 +27,10 @@
     ```
 - Gantilah warna tema aplikasi sesuai kesukaan Anda.
 - Lakukan commit hasil jawaban Soal 1 dengan pesan "W13: Jawaban Soal 1"
+
+## Soal 2
+- Masukkan hasil capture layar ke laporan praktikum Anda.
+    - Hasil
+
+    ![Soal 2](image/image.png)
+- Lakukan commit hasil jawaban Soal 2 dengan pesan "W13: Jawaban Soal 2"
