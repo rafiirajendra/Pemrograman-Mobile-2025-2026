@@ -32,5 +32,12 @@
 - Masukkan hasil capture layar ke laporan praktikum Anda.
     - Hasil
 
-    ![Soal 2](image/image.png)
+    ![Soal 2](image/image01.png)
 - Lakukan commit hasil jawaban Soal 2 dengan pesan "W13: Jawaban Soal 2"
+
+## Soal 3
+- Masukkan hasil capture layar ke laporan praktikum Anda.
+    - Hasil
+
+    ![Soal 3](image/image02.png)
+- Lakukan commit hasil jawaban Soal 2 dengan pesan "W13: Jawaban Soal 3"
