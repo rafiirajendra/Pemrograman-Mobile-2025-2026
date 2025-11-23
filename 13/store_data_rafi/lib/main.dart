@@ -5,6 +5,7 @@ import 'model/pizza.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,6 +40,14 @@ class _MyHomePageState extends State<MyHomePage> {
   String tempPath = '';
   late File myFile;
   String fileText = '';
+  
+  // Langkah 3: Tambahkan controller dan variabel
+  final pwdController = TextEditingController();
+  String myPass = '';
+  
+  // Langkah 4: Inisialisasi Secure Storage
+  final storage = const FlutterSecureStorage();
+  final myKey = 'myPass';
 
   @override
   void initState() {
@@ -55,19 +64,47 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('Path Provider'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text('Doc path: $documentsPath'),
-          Text('Temp path: $tempPath'),
-          ElevatedButton(
-            child: const Text('Read File'),
-            onPressed: () => readFile(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              TextField(
+                controller: pwdController,
+              ),
+              ElevatedButton(
+                child: const Text('Save Value'),
+                onPressed: () {
+                  writeToSecureStorage();
+                },
+              ),
+              ElevatedButton(
+                child: const Text('Read Value'),
+                onPressed: () {
+                  readFromSecureStorage().then((value) {
+                    setState(() {
+                      myPass = value;
+                    });
+                  });
+                },
+              ),
+              Text(myPass),
+            ],
           ),
-          Text(fileText),
-        ],
+        ),
       ),
     );
+  }
+
+  // Langkah 5: Method untuk write to secure storage
+  Future writeToSecureStorage() async {
+    await storage.write(key: myKey, value: pwdController.text);
+  }
+
+  // Langkah 6: Method untuk read from secure storage
+  Future<String> readFromSecureStorage() async {
+    String secret = await storage.read(key: myKey) ?? '';
+    return secret;
   }
 
   // Langkah 3: Method untuk write file

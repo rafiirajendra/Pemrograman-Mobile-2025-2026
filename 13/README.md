@@ -327,3 +327,11 @@
     
     ![Soal 8](gif/gif02.gif)
 - Lalu lakukan commit dengan pesan "W13: Jawaban Soal 8".
+
+# Praktikum 7: Menyimpan data dengan enkripsi/dekripsi
+## Soal 9
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+    - Hasil Praktikum
+
+    ![Soal 9](gif/gif03.gif)
+- Lalu lakukan commit dengan pesan "W13: Jawaban Soal 9".
