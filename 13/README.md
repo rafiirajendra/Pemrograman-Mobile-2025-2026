@@ -41,3 +41,11 @@
 
     ![Soal 3](image/image02.png)
 - Lakukan commit hasil jawaban Soal 2 dengan pesan "W13: Jawaban Soal 3"
+
+# Praktikum 2: Handle kompatibilitas data JSON
+## Soal 4
+- Capture hasil running aplikasi Anda, kemudian impor ke laporan praktikum Anda!
+    - Hasil Praktikum
+
+    ![Soal 4](image/image03.png)
+- Lalu lakukan commit dengan pesan "W13: Jawaban Soal 4".

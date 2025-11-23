@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 import 'model/pizza.dart';
 
@@ -9,7 +10,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,8 +30,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String pizzaString = '';
   List<Pizza> myPizzas = [];
+
   @override
   void initState() {
     super.initState();
@@ -41,36 +41,43 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('JSON'),
       ),
-      body: ListView.builder(
-        itemCount: myPizzas.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(myPizzas[index].pizzaName),
-            subtitle: Text(myPizzas[index].description),
-          );
-        },
-      ),
+      body: myPizzas.isEmpty
+          ? const Center(child: CircularProgressIndicator())
+          : ListView.builder(
+              itemCount: myPizzas.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(myPizzas[index].pizzaName),
+                  subtitle: Text(
+                    '${myPizzas[index].description} - € ${myPizzas[index].price}',
+                  ),
+                );
+              },
+            ),
     );
   }
 
   Future<List<Pizza>> readJsonFile() async {
-    String myString = await DefaultAssetBundle.of(context)
-        .loadString('assets/pizzalist.json');
-    List pizzaMapList = jsonDecode(myString);
-    List<Pizza> myPizzas = [];
-    for (var pizza in pizzaMapList) {
-      Pizza myPizza = Pizza.fromJson(pizza);
-      myPizzas.add(myPizza);
-    }
-    return myPizzas;
-    // setState(() {
-    //   pizzaString = myString;
-    // });
+    final myString = await rootBundle.loadString('assets/pizzalist_broken.json');
+
+    final List<dynamic> pizzaMapList = jsonDecode(myString);
+
+    final List<Pizza> pizzas = pizzaMapList
+        .map((pizza) => Pizza.fromJson(pizza as Map<String, dynamic>))
+        .toList();
+    String json = convertToJson(myPizzas);
+    print(json);
+    return pizzas;
+  }
+
+  String convertToJson(List<Pizza> pizzas) {
+    return jsonEncode(pizzas.map((pizza) => pizza.toJson()).toList());
   }
 }
