@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 import 'model/pizza.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,10 +32,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Pizza> myPizzas = [];
+  int appCounter = 0;
 
   @override
   void initState() {
     super.initState();
+    readAndWritePreference();
     readJsonFile().then((value) {
       setState(() {
         myPizzas = value;
@@ -48,20 +51,49 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('JSON'),
       ),
-      body: myPizzas.isEmpty
-          ? const Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: myPizzas.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(myPizzas[index].pizzaName),
-                  subtitle: Text(
-                    '${myPizzas[index].description} - € ${myPizzas[index].price}',
-                  ),
-                );
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              'You have opened the app $appCounter times.'),
+            ElevatedButton(
+              onPressed: () {
+                deletePreference();
               },
+              child: Text('Reset counter'),
             ),
+          ],
+        ),
+      ),
     );
+  }
+
+  // Langkah 13: Method untuk delete preference
+  Future<void> deletePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+    setState(() {
+      appCounter = 0;
+    });
+  }
+
+  // Langkah 5-9: Method untuk read dan write preference
+  Future<void> readAndWritePreference() async {
+    // Langkah 6: Dapatkan instance SharedPreferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    
+    // Langkah 7: Baca, cek null, dan increment counter
+    appCounter = prefs.getInt('appCounter') ?? 0;
+    appCounter++;
+    
+    // Langkah 8: Simpan nilai baru
+    await prefs.setInt('appCounter', appCounter);
+    
+    // Langkah 9: Perbarui state
+    setState(() {
+      appCounter = appCounter;
+    });
   }
 
   Future<List<Pizza>> readJsonFile() async {
