@@ -206,5 +206,124 @@
 
     ![Praktikum 4](image/image04.png)
 
-    ![Soal 6](scrcpy_4fPbpkmAac.gif)
+    ![Soal 6](gif/gif01.gif)
 - Lalu lakukan commit dengan pesan "W13: Jawaban Soal 6".
+
+# Praktikum 5: Akses filesystem dengan path_provider
+## Soal 7
+- Capture hasil praktikum Anda dan lampirkan di README.
+    - Hasil Praktikum
+
+    ![Soal 7](image/image05.png)
+- Lalu lakukan commit dengan pesan "W13: Jawaban Soal 7".
+
+# Praktikum 6: Akses filesystem dengan direktori
+## Soal 8
+- Jelaskan maksud kode pada langkah 3 dan 7 !
+    ## Penjelasan Langkah 3 dan Langkah 7
+    ### **Langkah 3: Method writeFile()**
+
+    ```dart
+    Future<bool> writeFile() async {
+    try {
+        await myFile.writeAsString('Margherita, Capricciosa, Napoli');
+        return true;
+    } catch (e) {
+        return false;
+    }
+    }
+    ```
+
+    **Penjelasan detail:**
+
+    1. **`Future<bool>`** - Method ini mengembalikan `Future` dengan tipe `bool` (true/false)
+    - Karena operasi file bersifat asinkron (membutuhkan waktu)
+    - Return `bool` untuk menandakan sukses (true) atau gagal (false)
+
+    2. **`async`** - Menandakan method ini asinkron
+    - Memungkinkan penggunaan keyword `await`
+    - Tidak memblokir thread utama saat menulis file
+
+    3. **`try-catch` block** - Error handling
+    - **`try`**: Mencoba menulis file
+    - **`catch`**: Menangkap error jika terjadi masalah (misal: permission denied, disk penuh, dll)
+
+    4. **`await myFile.writeAsString('...')`**
+    - **`myFile`**: Object File yang sudah diinisialisasi dengan path `$documentsPath/pizzas.txt`
+    - **`writeAsString()`**: Method untuk menulis string ke file
+    - **`await`**: Menunggu operasi penulisan selesai sebelum lanjut ke baris berikutnya
+    - Jika file belum ada → otomatis dibuat
+    - Jika file sudah ada → konten lama ditimpa (overwrite)
+
+    5. **Return value:**
+    - `return true` → File berhasil ditulis
+    - `return false` → Terjadi error saat menulis
+
+    **Kapan dipanggil?** Di `initState()` setelah path didapat:
+    ```dart
+    getPaths().then((_) {
+    myFile = File('$documentsPath/pizzas.txt');
+    writeFile(); // ← Dipanggil otomatis saat app pertama kali dibuka
+    });
+    ```
+
+    ---
+
+    ### **Langkah 7: Run (Cara Kerja Aplikasi)**
+
+    **Flow aplikasi:**
+
+    1. **Saat aplikasi pertama kali dibuka:**
+    ```
+    initState() dipanggil
+    → getPaths() dijalankan untuk mendapat path directory
+    → myFile diinisialisasi: File('$documentsPath/pizzas.txt')
+    → writeFile() otomatis dipanggil
+    → File 'pizzas.txt' dibuat dan diisi dengan 'Margherita, Capricciosa, Napoli'
+    ```
+
+    2. **User melihat UI:**
+    - Doc path ditampilkan (misalnya: `/data/user/0/com.example.app/documents`)
+    - Temp path ditampilkan (misalnya: `/data/user/0/com.example.app/cache`)
+    - Tombol "Read File"
+    - Area kosong untuk teks (karena `fileText` masih kosong string `''`)
+
+    3. **User menekan tombol "Read File":**
+    ```
+    onPressed: () => readFile() dipanggil
+    → myFile.readAsString() membaca isi file 'pizzas.txt'
+    → setState() dipanggil untuk update UI
+    → fileText = 'Margherita, Capricciosa, Napoli'
+    → Text(fileText) di UI menampilkan konten file
+    ```
+
+    **Hasil yang terlihat:**
+    ```
+    Doc path: /data/user/0/com.example.shared/documents
+    Temp path: /data/user/0/com.example.shared/cache
+    [Tombol Read File]
+    Margherita, Capricciosa, Napoli  ← Muncul setelah tombol ditekan
+    ```
+
+    ---
+
+    ## **Konsep Penting:**
+
+    | Aspek | Penjelasan |
+    |-------|------------|
+    | **Persistent Storage** | File tetap ada meskipun app ditutup/restart |
+    | **Async Operations** | Operasi file tidak memblokir UI (app tetap responsive) |
+    | **Error Handling** | Try-catch mencegah crash jika ada masalah |
+    | **Separation of Concerns** | Write (langkah 3) terpisah dari Read (langkah 5) |
+    | **User Interaction** | User kontrol kapan membaca file (via tombol) |
+
+    **Analogi sederhana:**
+    - **writeFile()** = Menulis surat dan menyimpan di laci
+    - **readFile()** = Membuka laci dan membaca surat yang sudah ditulis
+    - File di documents directory = Laci yang isinya tidak hilang meski rumah ditutup
+
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+    - Hasil Praktikum
+    
+    ![Soal 8](gif/gif02.gif)
+- Lalu lakukan commit dengan pesan "W13: Jawaban Soal 8".

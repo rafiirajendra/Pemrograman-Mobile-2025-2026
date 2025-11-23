@@ -3,6 +3,8 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 import 'model/pizza.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
 void main() {
   runApp(const MyApp());
@@ -33,40 +35,74 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<Pizza> myPizzas = [];
   int appCounter = 0;
+  String documentsPath = '';
+  String tempPath = '';
+  late File myFile;
+  String fileText = '';
 
   @override
   void initState() {
-    super.initState();
-    readAndWritePreference();
-    readJsonFile().then((value) {
-      setState(() {
-        myPizzas = value;
-      });
+    getPaths().then((_) {
+      myFile = File('$documentsPath/pizzas.txt');
+      writeFile();
     });
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('JSON'),
+        title: const Text('Path Provider'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              'You have opened the app $appCounter times.'),
-            ElevatedButton(
-              onPressed: () {
-                deletePreference();
-              },
-              child: Text('Reset counter'),
-            ),
-          ],
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text('Doc path: $documentsPath'),
+          Text('Temp path: $tempPath'),
+          ElevatedButton(
+            child: const Text('Read File'),
+            onPressed: () => readFile(),
+          ),
+          Text(fileText),
+        ],
       ),
     );
+  }
+
+  // Langkah 3: Method untuk write file
+  Future<bool> writeFile() async {
+    try {
+      await myFile.writeAsString('2341720158, Muhammad Rafi Rajendra');
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // Langkah 5: Method untuk read file
+  Future<bool> readFile() async {
+    try {
+      // Read the file.
+      String fileContent = await myFile.readAsString();
+      setState(() {
+        fileText = fileContent;
+      });
+      return true;
+    } catch (e) {
+      // On error, return false.
+      return false;
+    }
+  }
+
+  // Langkah 4: Method untuk get paths
+  Future<void> getPaths() async {
+    final docDir = await getApplicationDocumentsDirectory();
+    final tempDir = await getTemporaryDirectory();
+    setState(() {
+      documentsPath = docDir.path;
+      tempPath = tempDir.path;
+    });
   }
 
   // Langkah 13: Method untuk delete preference
