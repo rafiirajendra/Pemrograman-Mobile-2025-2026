@@ -3,6 +3,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 import 'model/pizza.dart';
 import 'httphelper.dart';
+import 'pizza_detail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
@@ -75,14 +76,42 @@ class _MyHomePageState extends State<MyHomePage> {
             return ListView.builder(
                 itemCount: (snapshot.data == null) ? 0 : snapshot.data!.length,
                 itemBuilder: (BuildContext context, int position) {
-                  return ListTile(
-                    title: Text(snapshot.data![position].pizzaName),
-                    subtitle: Text(snapshot.data![position].description +
-                        ' - € ' +
-                        snapshot.data![position].price.toString()),
+                  final pizza = snapshot.data![position];
+                  return Dismissible(
+                    key: Key(pizza.id.toString()),
+                    onDismissed: (item) {
+                      HttpHelper helper = HttpHelper();
+                      helper.deletePizza(pizza.id);
+                    },
+                    child: ListTile(
+                      title: Text(pizza.pizzaName),
+                      subtitle: Text(pizza.description +
+                          ' - € ' +
+                          pizza.price.toString()),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PizzaDetailScreen(
+                              pizza: pizza, isNew: false)),
+                        );
+                      },
+                    ),
                   );
                 });
           }),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PizzaDetailScreen(
+                      pizza: Pizza(),
+                      isNew: true,
+                    )),
+          );
+        }),
     );
   }
 

@@ -6,11 +6,13 @@ const String keyPrice = 'price';
 const String keyImage = 'imageUrl';
 
 class Pizza {
-  final int id;
-  final String pizzaName;
-  final String description;
-  final double price;
-  final String imageUrl;
+  int id = 0;
+  String pizzaName = '';
+  String description = '';
+  double price = 0.0;
+  String imageUrl = '';
+
+  Pizza();
 
   // Langkah 2: Perbarui fromJson() menggunakan konstanta
   Pizza.fromJson(Map<String, dynamic> json)
